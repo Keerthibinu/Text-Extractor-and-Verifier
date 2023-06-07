@@ -7,6 +7,8 @@ from PIL import Image
 from paddleocr import PaddleOCR
 from fuzzywuzzy import fuzz
 
+
+
 # Load the "en_core_web_lg" model
 nlp_lg = spacy.load('./output/model-best')
 
