@@ -3,6 +3,7 @@ Main program text extracter and verifier
 """
 
 import webbrowser
+import glob
 from paddleocr import PaddleOCR
 import spacy
 
@@ -10,7 +11,7 @@ import spacy
 ocr = PaddleOCR()
 
 # Step 4: Load your trained NER model using SpaCy
-nlp_ner = spacy.load("/home/keerthi/NEW/model-best")
+nlp_ner = spacy.load("./model-best")
 
 
 def extract_text_from_images(paths):
@@ -51,24 +52,9 @@ def display_in_browser(result):
     webbrowser.open_new_tab("dictionary.html")
 
 
-image_paths = [
-    "/home/keerthi/NEW/images2/102.jpeg",
-    "/home/keerthi/NEW/images2/101.jpeg",
-    "/home/keerthi/NEW/images2/100.jpg",
-    "/home/keerthi/NEW/images2/82.jpg",
-    "/home/keerthi/NEW/images2/80.jpg",
-    "/home/keerthi/NEW/images2/36.jpg",
-    "/home/keerthi/NEW/images2/11.jpg",
-    "/home/keerthi/NEW/images2/3.jpg",
-    "/home/keerthi/NEW/images2/1.jpg",
-    "/home/keerthi/NEW/images2/2.jpg",
-    "/home/keerthi/NEW/images2/4.jpg",
-    "/home/keerthi/NEW/images2/5.jpg",
-    "/home/keerthi/NEW/images2/10.jpg",
-    "/home/keerthi/NEW/images2/24.jpg",
-    "/home/keerthi/NEW/images2/25.jpg",
-    "/home/keerthi/NEW/images2/36.jpg"
-]
+PATH = "./trained_img/"
+image_paths = glob.glob(PATH + "*.png") + glob.glob(PATH + "*.jpeg")
+image_paths += glob.glob(PATH + "*.jpg")
 
 results = []
 for path in image_paths:

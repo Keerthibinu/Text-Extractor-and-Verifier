@@ -10,7 +10,7 @@ import spacy
 ocr = PaddleOCR()
 
 # Step 4: Load your trained NER model using SpaCy
-nlp_ner = spacy.load("/home/keerthi/NEW/model-best")
+nlp_ner = spacy.load("./model-best")
 list1 = []
 
 
@@ -35,7 +35,7 @@ def process_text_with_ner(text):
     return doc
 
 
-PATH = "/home/keerthi/NEW/images2/3.jpg"
+PATH = "./notTrained_img/4.png"
 TEXT = extract_text_from_image(PATH)
 Processed_doc = process_text_with_ner(TEXT)
 print(Processed_doc)
