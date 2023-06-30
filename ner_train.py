@@ -1,8 +1,8 @@
 """
 Code to train ner model
 
-! python3 -m spacy init config config.cfg --lang en --pipeline ner
---optimize efficiency
+! python3 -m spacy init config config.cfg --lang en
+--pipeline ner --optimize efficiency
 ! python3 -m spacy train config.cfg --output ./ --paths.train
 ./training_data.spacy --paths.dev ./training_data.spacy
 """

@@ -2,6 +2,7 @@
 Main program text extracter and verifier
 """
 
+import re
 import webbrowser
 from paddleocr import PaddleOCR
 import spacy
@@ -35,30 +36,38 @@ def process_text_with_ner(text):
     return doc
 
 
-PATH = "./notTrained_img/4.png"
+PATH = ".img.jpeg"
 TEXT = extract_text_from_image(PATH)
 Processed_doc = process_text_with_ner(TEXT)
 print(Processed_doc)
 
 dic = {}
+college = ["fisat", "federal institute of science and technology"]
 FIRST_NAME = False
 for ent in Processed_doc.ents:
     if ent.label_ == "NAME":
         if not FIRST_NAME:
             dic[ent.label_] = ent.text
             FIRST_NAME = True
+    elif ent.label_ == "INSTITUTE":
+        if ent.text.lower() in college:
+            dic[ent.label_] = "FISAT"
+        else:
+            dic["HOST"] = ent.text
+            dic.pop("INSTITUTE", 0)
     else:
         if ent.label_ not in dic:
             dic[ent.label_] = ent.text
-
 print(dic)
 
 
 def display_in_browser(dictionary):
     """
-        To display output in browser
+    Display output in the browser
     """
-    html_content = f"<html><body><pre>{dictionary}</pre></body></html>"
+    formatted_dict = str(dictionary).replace('{', '').replace('}', '')
+    formatted_dict = re.sub(r"',\s*'", "',\n'", formatted_dict)
+    html_content = f"<html><body><pre><span style='font-size: 20px;'>{formatted_dict}</span></pre></body></html>"
     with open("dictionary.html", "w", encoding="utf-8") as file_f:
         file_f.write(html_content)
     webbrowser.open_new_tab("dictionary.html")
