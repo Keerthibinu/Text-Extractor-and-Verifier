@@ -36,7 +36,7 @@ def process_text_with_ner(text):
     return doc
 
 
-PATH = ".img.jpeg"
+PATH = "img.jpeg"
 TEXT = extract_text_from_image(PATH)
 Processed_doc = process_text_with_ner(TEXT)
 print(Processed_doc)
