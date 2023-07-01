@@ -25,7 +25,9 @@ pip install -U spacy
 
 ## Steps to run the project:
 1.Clone the project 'https://gitlab.com/Keerthiii098/text-extractor-and-verifier' to local project directory.
+
 2.Navigate to the cloned repository and complete the installations given.
+
 3.Run the main program using command 'python3 main_prgm.py'.
 
 Once the tool is running, the output of the image given in the program will be displayed in the browser. 
